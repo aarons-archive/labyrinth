@@ -4,6 +4,7 @@
 //////////////
 // Gamepad //
 ////////////
+
 /*
 var _gamepad_slot = 0
 
@@ -14,6 +15,46 @@ for (var i = 0; i < gamepad_get_device_count(); i++;) {
 	}
 }
 */
+
+
+////////////
+// Sonar //
+//////////
+
+function scan(direction) {
+	
+	var _tiles = 0
+	
+	while (true) {
+		
+		var _check
+		
+		if (direction == "forward") {
+			if		(_direction == Direction.UP		) { _check = place_meeting(x, y - ((_tiles + 1) * global.TILE_LENGTH), oWall) }
+			else if (_direction == Direction.LEFT	) { _check = place_meeting(x - ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
+			else if (_direction == Direction.DOWN	) { _check = place_meeting(x, y + ((_tiles + 1) * global.TILE_LENGTH), oWall) }
+			else if (_direction == Direction.RIGHT	) { _check = place_meeting(x + ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
+		}
+		else if (direction == "left") {
+			if		(_direction == Direction.UP		) { _check = place_meeting(x - ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
+			else if (_direction == Direction.LEFT	) { _check = place_meeting(x, y + ((_tiles + 1) * global.TILE_LENGTH), oWall) }
+			else if (_direction == Direction.DOWN	) { _check = place_meeting(x + ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
+			else if (_direction == Direction.RIGHT	) { _check = place_meeting(x, y - ((_tiles + 1) * global.TILE_LENGTH), oWall) }
+		}
+		else if (direction == "right") {
+			if		(_direction == Direction.UP		) { _check = place_meeting(x + ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
+			else if (_direction == Direction.LEFT	) { _check = place_meeting(x, y - ((_tiles + 1) * global.TILE_LENGTH), oWall) }
+			else if (_direction == Direction.DOWN	) { _check = place_meeting(x - ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
+			else if (_direction == Direction.RIGHT	) { _check = place_meeting(x, y + ((_tiles + 1) * global.TILE_LENGTH), oWall) }
+		}
+
+		if (_check) {
+			return _tiles
+		}
+		_tiles += 1
+	}
+}
+
 
 ///////////////
 // Rotation //
@@ -95,32 +136,14 @@ if (
 	y += _vertical_distance
 }
 
-
-////////////
-// Sonar //
-//////////
-
-function scan_ahead() {
-	
-	var _tiles = 0
-	
-	while (true) {
-		
-		var _check
-
-		if		(_direction == Direction.UP		) { _check = place_meeting(x, y - ((_tiles + 1) * global.TILE_LENGTH), oWall) }
-		else if (_direction ==  Direction.LEFT	) { _check = place_meeting(x - ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
-		else if (_direction == Direction.DOWN	) { _check = place_meeting(x, y + ((_tiles + 1) * global.TILE_LENGTH), oWall) }
-		else if (_direction == Direction.RIGHT	) { _check = place_meeting(x + ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
-		
-		if (_check) {
-			return _tiles
-		}
-		_tiles += 1
-	}
-}
-
 if (keyboard_check_pressed(ord("S"))) {
-	var _tiles = scan_ahead()
-	show_message(_tiles)
-}
+	var _left_tiles = scan("left")
+	var _right_tiles = scan("right")
+	
+	if (_left_tiles != 0) {
+		audio_play_sound(soundLeft, 0, false)
+	}
+    if (_right_tiles != 0) {
+		audio_play_sound(soundRight, 0, false)
+	}
+} 

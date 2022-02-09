@@ -1,7 +1,7 @@
 {
   "conversionMode": 0,
   "compression": 0,
-  "volume": 0.18,
+  "volume": 1.0,
   "preload": false,
   "bitRate": 128,
   "sampleRate": 44100,
@@ -11,14 +11,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "soundError.mp3",
-  "duration": 0.288,
+  "soundFile": "soundLeftAndRight.mp3",
+  "duration": 1.179083,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
   },
   "resourceVersion": "1.0",
-  "name": "soundError",
+  "name": "soundLeftAndRight",
   "tags": [],
   "resourceType": "GMSound",
 }

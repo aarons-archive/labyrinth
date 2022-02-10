@@ -24,8 +24,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Game",
+    "path": "folders/Game.yy",
   },
   "resourceVersion": "1.0",
   "name": "oWall",

@@ -21,8 +21,8 @@
     "path": "texturegroups/Default",
   },
   "swatchColours": null,
-  "gridX": 0,
-  "gridY": 0,
+  "gridX": 10,
+  "gridY": 10,
   "frames": [
     {"compositeImage":{"FrameId":{"name":"43cead3a-5c1a-4df4-a875-9f785431ec92","path":"sprites/sPlayer/sPlayer.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"43cead3a-5c1a-4df4-a875-9f785431ec92","path":"sprites/sPlayer/sPlayer.yy",},"LayerId":{"name":"0d4dd936-b37c-4a58-96e3-7a1b86fabe05","path":"sprites/sPlayer/sPlayer.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "Player",
+    "path": "folders/Player.yy",
   },
   "resourceVersion": "1.0",
   "name": "sPlayer",

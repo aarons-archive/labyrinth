@@ -30,22 +30,22 @@ function scan(direction) {
 		var _check
 		
 		if (direction == "forward") {
-			if		(_direction == Direction.UP		) { _check = place_meeting(x, y - ((_tiles + 1) * global.TILE_LENGTH), oWall) }
-			else if (_direction == Direction.LEFT	) { _check = place_meeting(x - ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
-			else if (_direction == Direction.DOWN	) { _check = place_meeting(x, y + ((_tiles + 1) * global.TILE_LENGTH), oWall) }
-			else if (_direction == Direction.RIGHT	) { _check = place_meeting(x + ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
+			if		(_direction == Direction.UP		) { _check = place_meeting(x, y - ((_tiles + 1) * 50), oWall) }
+			else if (_direction == Direction.LEFT	) { _check = place_meeting(x - ((_tiles + 1) * 50), y, oWall) }
+			else if (_direction == Direction.DOWN	) { _check = place_meeting(x, y + ((_tiles + 1) * 50), oWall) }
+			else if (_direction == Direction.RIGHT	) { _check = place_meeting(x + ((_tiles + 1) * 50), y, oWall) }
 		}
 		else if (direction == "left") {
-			if		(_direction == Direction.UP		) { _check = place_meeting(x - ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
-			else if (_direction == Direction.LEFT	) { _check = place_meeting(x, y + ((_tiles + 1) * global.TILE_LENGTH), oWall) }
-			else if (_direction == Direction.DOWN	) { _check = place_meeting(x + ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
-			else if (_direction == Direction.RIGHT	) { _check = place_meeting(x, y - ((_tiles + 1) * global.TILE_LENGTH), oWall) }
+			if		(_direction == Direction.UP		) { _check = place_meeting(x - ((_tiles + 1) * 50), y, oWall) }
+			else if (_direction == Direction.LEFT	) { _check = place_meeting(x, y + ((_tiles + 1) * 50), oWall) }
+			else if (_direction == Direction.DOWN	) { _check = place_meeting(x + ((_tiles + 1) * 50), y, oWall) }
+			else if (_direction == Direction.RIGHT	) { _check = place_meeting(x, y - ((_tiles + 1) * 50), oWall) }
 		}
 		else if (direction == "right") {
-			if		(_direction == Direction.UP		) { _check = place_meeting(x + ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
-			else if (_direction == Direction.LEFT	) { _check = place_meeting(x, y - ((_tiles + 1) * global.TILE_LENGTH), oWall) }
-			else if (_direction == Direction.DOWN	) { _check = place_meeting(x - ((_tiles + 1) * global.TILE_LENGTH), y, oWall) }
-			else if (_direction == Direction.RIGHT	) { _check = place_meeting(x, y + ((_tiles + 1) * global.TILE_LENGTH), oWall) }
+			if		(_direction == Direction.UP		) { _check = place_meeting(x + ((_tiles + 1) * 50), y, oWall) }
+			else if (_direction == Direction.LEFT	) { _check = place_meeting(x, y - ((_tiles + 1) * 50), oWall) }
+			else if (_direction == Direction.DOWN	) { _check = place_meeting(x - ((_tiles + 1) * 50), y, oWall) }
+			else if (_direction == Direction.RIGHT	) { _check = place_meeting(x, y + ((_tiles + 1) * 50), oWall) }
 		}
 
 		if (_check) {
@@ -54,6 +54,59 @@ function scan(direction) {
 		_tiles += 1
 	}
 }
+
+if (
+	_sonar_buffer == 0 
+	or (keyboard_check_pressed(global.KEYBOARD_SONAR_KEY) and global.ENVIRONMENT == environment.DEVELOPMENT)
+) {
+	
+	_sonar_buffer = 60
+	
+	var _left_tiles = scan("left")
+	var _right_tiles = scan("right")
+	
+	if (_left_tiles != 0) { 
+		audio_sound_gain(sound_left_sonar, (1 / _left_tiles), 0) 
+		audio_play_sound(sound_left_sonar, 0, false) 
+	}
+    if (_right_tiles != 0)	{
+		audio_sound_gain(sound_right_sonar, (1 / _right_tiles), 0) 
+		audio_play_sound(sound_right_sonar, 0, false) 
+	}
+	
+} 
+else { _sonar_buffer -= 1 }
+
+
+////////////////
+// Direction //
+//////////////
+
+if (
+	(_direction_buffer == 0 and global.DIFFICULTY == difficulty.EASY)
+	or 
+	(keyboard_check_pressed(global.KEYBOARD_DIRECTION_KEY) and global.ENVIRONMENT == environment.DEVELOPMENT)
+) {
+	
+	_direction_buffer = 180
+	
+	switch _direction {
+		case Direction.UP:
+			audio_play_sound(sound_tts_up, 0, false)
+			break
+		case Direction.RIGHT:
+			audio_play_sound(sound_tts_right, 0, false)
+			break
+		case Direction.DOWN:
+			audio_play_sound(sound_tts_down, 0, false)
+			break
+		case Direction.LEFT:
+			audio_play_sound(sound_tts_left, 0, false)
+			break		
+	}
+	
+} 
+else { _direction_buffer -= 1 }
 
 
 ///////////////
@@ -66,18 +119,18 @@ if (
 ) {
 	switch _direction {
 		case Direction.UP:
-			_direction = Direction.LEFT
-			image_angle = 90
-			break
-		case Direction.LEFT:
-			_direction = Direction.DOWN
-			image_angle = 180
-			break
-		case Direction.DOWN:
 			_direction = Direction.RIGHT
 			image_angle = 270
 			break
 		case Direction.RIGHT:
+			_direction = Direction.DOWN
+			image_angle = 180
+			break
+		case Direction.DOWN:
+			_direction = Direction.LEFT
+			image_angle = 90
+			break
+		case Direction.LEFT:
 			_direction = Direction.UP
 			image_angle = 0
 			break		
@@ -100,16 +153,16 @@ if (
 	// Move
 	switch _direction {
 		case Direction.UP:
-			_vertical_distance = -global.TILE_LENGTH
+			_vertical_distance = -50
 			break
 		case Direction.LEFT:
-			_horizontal_distance = -global.TILE_LENGTH
+			_horizontal_distance = -50
 			break
 		case Direction.DOWN:
-			_vertical_distance = global.TILE_LENGTH
+			_vertical_distance = 50
 			break
 		case Direction.RIGHT:
-			_horizontal_distance = global.TILE_LENGTH
+			_horizontal_distance = 50
 			break	
 	}
 	
@@ -119,7 +172,7 @@ if (
 			x += sign(_horizontal_distance)
 		}
 		_horizontal_distance = 0
-		audio_play_sound(soundError, 0, false)
+		audio_play_sound(sound_move_unavailable, 0, false)
 		// gamepad_set_vibration(_gamepad_slot, 1, 1);
 	}
 	x += _horizontal_distance
@@ -130,25 +183,8 @@ if (
 			y += sign(_vertical_distance)
 		}
 		_vertical_distance = 0
-		audio_play_sound(soundError, 0, false)
+		audio_play_sound(sound_move_unavailable, 0, false)
 		// gamepad_set_vibration(_gamepad_slot, 1, 1);
 	}
 	y += _vertical_distance
-}
-
-if (keyboard_check_pressed(ord("S")) or _sound_buffer == 0) {
-	
-	_sound_buffer = 100
-	
-	var _left_tiles = scan("left")
-	var _right_tiles = scan("right")
-	
-	if (_left_tiles != 0) {
-		audio_play_sound(soundLeft, 0, false)
-	}
-    if (_right_tiles != 0) {
-		audio_play_sound(soundRight, 0, false)
-	}
-} else {
-	_sound_buffer -= 1
 }

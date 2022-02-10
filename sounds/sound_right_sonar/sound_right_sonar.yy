@@ -1,4 +1,5 @@
 {
+  "conversionMode": 0,
   "compression": 0,
   "volume": 1.0,
   "preload": false,
@@ -10,14 +11,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "soundLeft.mp3",
-  "duration": 1.201633,
+  "soundFile": "sound_right_sonar.mp3",
+  "duration": 1.179083,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
   },
   "resourceVersion": "1.0",
-  "name": "soundLeft",
+  "name": "sound_right_sonar",
   "tags": [],
   "resourceType": "GMSound",
 }

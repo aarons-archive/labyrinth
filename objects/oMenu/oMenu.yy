@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "sPressurePlate",
-    "path": "sprites/sPressurePlate/sPressurePlate.yy",
+    "name": "sMenu",
+    "path": "sprites/sMenu/sMenu.yy",
   },
   "solid": false,
   "visible": true,
@@ -23,15 +23,16 @@
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Menu",
+    "path": "folders/Menu.yy",
   },
   "resourceVersion": "1.0",
-  "name": "oPressurePlate",
+  "name": "oMenu",
   "tags": [],
   "resourceType": "GMObject",
 }

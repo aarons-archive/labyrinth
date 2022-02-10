@@ -1,5 +1,4 @@
 {
-  "conversionMode": 0,
   "compression": 0,
   "volume": 1.0,
   "preload": false,
@@ -12,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "soundLeftAndRight.mp3",
-  "duration": 1.179083,
+  "duration": 1.201633,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",

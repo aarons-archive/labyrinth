@@ -136,7 +136,10 @@ if (
 	y += _vertical_distance
 }
 
-if (keyboard_check_pressed(ord("S"))) {
+if (keyboard_check_pressed(ord("S")) or _sound_buffer == 0) {
+	
+	_sound_buffer = 100
+	
 	var _left_tiles = scan("left")
 	var _right_tiles = scan("right")
 	
@@ -146,4 +149,6 @@ if (keyboard_check_pressed(ord("S"))) {
     if (_right_tiles != 0) {
 		audio_play_sound(soundRight, 0, false)
 	}
-} 
+} else {
+	_sound_buffer -= 1
+}

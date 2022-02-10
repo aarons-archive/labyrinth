@@ -30,3 +30,4 @@ enum Direction {
 }
 
 _direction = Direction.UP
+_sound_buffer = 100

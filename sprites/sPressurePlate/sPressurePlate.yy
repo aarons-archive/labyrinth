@@ -63,7 +63,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"sPressurePlate","path":"sprites/sPressurePlate/sPressurePlate.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "sPressurePlate",
     "tags": [],
     "resourceType": "GMSequence",
